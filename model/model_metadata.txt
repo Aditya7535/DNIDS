@@ -1,0 +1,10 @@
+==================================================
+  DNIDS Model Metadata
+==================================================
+
+  accuracy: 0.9993252680372722
+  model_type: DecisionTreeClassifier
+  features: 41
+  categorical_features: ['protocol_type', 'service', 'flag']
+  binary_classification: True
+  labels: {0: 'Normal', 1: 'Attack'}

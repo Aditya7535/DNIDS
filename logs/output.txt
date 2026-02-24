@@ -1,0 +1,167 @@
+﻿python : 11:51:29 [SPOUT] Topology 
+'dnids-simulation' created
+At line:1 char:32
++ ... NG='utf-8'; python 
+simulation/run_simulation.py --records 100 
+--skip- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (1 
+   1:51:29 [SPOUT...lation' created:String) [  
+  ], RemoteException
+    + FullyQualifiedErrorId : NativeCommandErr 
+   or
+ 
+11:51:29 [SPOUT] Building topology...
+11:51:29 [SPOUT] KDD Spout initialized
+11:51:29 [SPOUT]   Dataset: D:\DNIDS\topology\.
+.\dataset\kddcup.data_10_percent.csv
+11:51:29 [SPOUT]   Max records: 100
+11:51:29 [SPOUT] Preprocess Bolt created
+11:51:29 [SPOUT] ML Bolt created
+11:51:29 [SPOUT] Alert Bolt created
+11:51:29 [SPOUT] Topology components created:
+11:51:29 [SPOUT]   [1] KDD Spout (source)
+11:51:29 [SPOUT]   [2] Preprocess Bolt 
+(feature engineering)
+11:51:29 [SPOUT]   [3] ML Bolt (prediction)
+11:51:29 [SPOUT]   [4] Alert Bolt (alerting)
+11:51:29 [SPOUT] 
+11:51:29 [SPOUT]   Topology DAG:
+11:51:29 [SPOUT]   KDD Spout --> Preprocess 
+Bolt --> ML Bolt --> Alert Bolt
+11:51:29 [SPOUT] Initializing components...
+11:51:29 [SPOUT] Opened dataset (65.4 MB)
+11:51:31 [SPOUT] Loaded scaler from 
+D:\DNIDS\topology\..\model\scaler.pkl
+11:51:31 [SPOUT] Loaded 3 label encoders
+11:51:31 [SPOUT]   protocol_type: 3 classes
+11:51:31 [SPOUT]   service: 66 classes
+11:51:31 [SPOUT]   flag: 11 classes
+11:51:31 [SPOUT] Preprocess Bolt ready!
+11:51:31 [SPOUT] Loaded model from D:\DNIDS\top
+ology\..\model\decision_tree_model.pkl
+11:51:31 [SPOUT]   Model type: 
+DecisionTreeClassifier
+11:51:31 [SPOUT]   Tree depth: 20
+11:51:31 [SPOUT]   Num leaves: 115
+11:51:31 [SPOUT] ML Bolt ready!
+11:51:31 [SPOUT] Alert log: 
+D:\DNIDS\topology\..\logs\intrusion_alerts.log
+11:51:31 [SPOUT] Alert Bolt ready!
+11:51:31 [SPOUT] All components initialized!
+
+11:51:31 [SPOUT] Starting tuple processing...
+11:51:31 [SPOUT] Emitting record #1: 0,tcp,http
+,SF,181,5450,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,8,
+8,0.0,0.0,0.0,0.0,1.0,0...
+11:51:31 [SPOUT] Record #1: Preprocessed 41 
+features (label: normal.)
+11:51:31 [SPOUT] Record #1: Normal 
+(confidence: 1.00, actual: normal.)
+11:51:31 [SPOUT] [OK] Normal traffic | Record 
+#1 | Confidence: 1.00
+11:51:31 [SPOUT] Emitting record #2: 0,tcp,http
+,SF,239,486,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,8,8
+,0.0,0.0,0.0,0.0,1.0,0....
+11:51:31 [SPOUT] Record #2: Preprocessed 41 
+features (label: normal.)
+11:51:31 [SPOUT] Record #2: Normal 
+(confidence: 1.00, actual: normal.)
+11:51:31 [SPOUT] [OK] Normal traffic | Record 
+#2 | Confidence: 1.00
+11:51:31 [SPOUT] Emitting record #3: 0,tcp,http
+,SF,235,1337,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,8,
+8,0.0,0.0,0.0,0.0,1.0,0...
+11:51:31 [SPOUT] Record #3: Preprocessed 41 
+features (label: normal.)
+11:51:31 [SPOUT] Record #3: Normal 
+(confidence: 1.00, actual: normal.)
+11:51:31 [SPOUT] [OK] Normal traffic | Record 
+#3 | Confidence: 1.00
+11:51:31 [SPOUT] Emitting record #4: 0,tcp,http
+,SF,219,1337,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,6,
+6,0.0,0.0,0.0,0.0,1.0,0...
+11:51:31 [SPOUT] Record #4: Normal 
+(confidence: 1.00, actual: normal.)
+11:51:31 [SPOUT] [OK] Normal traffic | Record 
+#4 | Confidence: 1.00
+11:51:31 [SPOUT] Emitting record #5: 0,tcp,http
+,SF,217,2032,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,6,
+6,0.0,0.0,0.0,0.0,1.0,0...
+11:51:31 [SPOUT] Record #5: Normal 
+(confidence: 1.00, actual: normal.)
+11:51:31 [SPOUT] [OK] Normal traffic | Record 
+#5 | Confidence: 1.00
+11:51:31 [SPOUT] Reached max records limit: 100
+11:51:31 [SPOUT] Spout closed. Total records 
+emitted: 100
+11:51:31 [SPOUT] Alert log saved: 
+D:\DNIDS\topology\..\logs\intrusion_alerts.log
+
+============================================================
+  DISTRIBUTED NETWORK INTRUSION DETECTION SYSTEM (DNIDS)
+============================================================
+
+  [KDD Spout] --> [Preprocess Bolt] --> [ML Bolt] --> [Alert Bolt]
+
+  Apache Storm + Python + DecisionTree Classifier
+  Dataset: KDD Cup 99 (41 features, binary classification)
+============================================================
+
+
+============================================================
+  Starting DNIDS Simulation
+============================================================
+  Records to process: 100
+  Emit delay: 0.0s
+  Report interval: every 500 records
+  Verbose: Yes
+============================================================
+
+
+============================================================
+  DISTRIBUTED NETWORK INTRUSION DETECTION SYSTEM
+  ========================================================
+  Topology: dnids-simulation
+  Mode: Local (simulating Storm cluster)
+  Components: Spout -> Preprocess -> ML -> Alert
+============================================================
+
+
+
+============================================================
+ DNIDS - FINAL REPORT
+============================================================
+
+------------------------------------------------------------
+ DNIDS Running Statistics (Record #100)
+------------------------------------------------------------
+  Total Processed:        100
+  Normal Traffic:         100 (100.0%)
+  Attacks Found:            0 (  0.0%)
+------------------------------------------------------------
+  Model Accuracy:      100.00%
+  Precision:             0.00%
+  Recall:                0.00%
+------------------------------------------------------------
+  True Positives:           0  (Attacks correctly detected)
+  False Positives:          0  (Normal flagged as attack)
+  True Negatives:         100  (Normal correctly identified)
+  False Negatives:          0  (Attacks missed)
+------------------------------------------------------------
+  Processing Rate:       2188 records/sec
+  Elapsed Time:           0.0 seconds
+------------------------------------------------------------
+
+ [OK] DNIDS processing complete!
+ Alert log: D:\DNIDS\topology\..\logs\intrusion_alerts.log
+
+============================================================
+  Topology Summary
+============================================================
+  Records processed: 100
+  Errors:            0
+  Processing time:   1.4s
+  Throughput:        73 records/sec
+============================================================

@@ -1,0 +1,57 @@
+﻿
+============================================================
+  DISTRIBUTED NETWORK INTRUSION DETECTION SYSTEM (DNIDS)
+============================================================
+
+  [KDD Spout] --> [Preprocess Bolt] --> [ML Bolt] --> [Alert Bolt]
+
+  Apache Storm + Python + DecisionTree Classifier
+  Dataset: KDD Cup 99 (41 features, binary classification)
+============================================================
+
+
+============================================================
+python : Traceback (most recent call last):
+At line:1 char:1
++ python simulation/run_simulation.py 
+--records 100 --skip-checks 2>&1  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (T 
+   raceback (most recent call last)::String)   
+  [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandErr 
+   or
+ 
+  File 
+"D:\DNIDS\simulation\run_simulation.py", line 
+240, in <module>
+    main()
+    ~~~~^^
+  File 
+"D:\DNIDS\simulation\run_simulation.py", line 
+231, in main
+    run_simulation(
+    ~~~~~~~~~~~~~~^
+        records=args.records,
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        quiet=args.quiet
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File 
+"D:\DNIDS\simulation\run_simulation.py", line 
+155, in run_simulation
+    print(f"  \U0001f680 Starting DNIDS 
+Simulation")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", 
+line 19, in encode
+    return codecs.charmap_encode(input,self.err
+ors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't 
+encode character '\U0001f680' in position 2: 
+character maps to <undefined>

@@ -1,0 +1,116 @@
+# =============================================================
+# Docker Compose - Apache Storm Cluster for DNIDS
+# =============================================================
+# Usage:
+#   Build:  docker compose build
+#   Start:  docker compose up -d
+#   Stop:   docker compose down
+#   Logs:   docker compose logs -f
+#   Status: docker compose ps
+#   Deploy: docker compose exec supervisor python3 /opt/storm/topology/ids_topology.py --records 1000
+# =============================================================
+
+services:
+  # ─────────────────────────────────────────────
+  # Zookeeper - Cluster Coordination Service
+  # ─────────────────────────────────────────────
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: dnids-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+    networks:
+      - storm-net
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Storm Nimbus - Master Node
+  # ─────────────────────────────────────────────
+  nimbus:
+    build:
+      context: .
+      dockerfile: Dockerfile.storm
+    image: dnids-storm:latest
+    container_name: dnids-nimbus
+    command: storm nimbus
+    ports:
+      - "6627:6627"
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper
+    volumes:
+      - storm-data:/data
+      - storm-logs:/logs
+      - ./topology:/opt/storm/topology
+      - ./model:/opt/storm/model
+      - ./dataset:/opt/storm/dataset
+      - ./logs:/opt/storm/app-logs
+    networks:
+      - storm-net
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Storm Supervisor - Worker Node
+  # ─────────────────────────────────────────────
+  supervisor:
+    build:
+      context: .
+      dockerfile: Dockerfile.storm
+    image: dnids-storm:latest
+    container_name: dnids-supervisor
+    command: storm supervisor
+    depends_on:
+      - nimbus
+      - zookeeper
+    links:
+      - nimbus
+      - zookeeper
+    volumes:
+      - storm-data:/data
+      - storm-logs:/logs
+      - ./topology:/opt/storm/topology
+      - ./model:/opt/storm/model
+      - ./dataset:/opt/storm/dataset
+      - ./logs:/opt/storm/app-logs
+    networks:
+      - storm-net
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Storm UI - Web Dashboard
+  # ─────────────────────────────────────────────
+  stormui:
+    build:
+      context: .
+      dockerfile: Dockerfile.storm
+    image: dnids-storm:latest
+    container_name: dnids-stormui
+    command: storm ui
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nimbus
+    links:
+      - nimbus
+    networks:
+      - storm-net
+    restart: unless-stopped
+
+# ─────────────────────────────────────────────
+# Networks
+# ─────────────────────────────────────────────
+networks:
+  storm-net:
+    driver: bridge
+
+# ─────────────────────────────────────────────
+# Volumes
+# ─────────────────────────────────────────────
+volumes:
+  storm-data:
+    driver: local
+  storm-logs:
+    driver: local

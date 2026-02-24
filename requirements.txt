@@ -1,0 +1,27 @@
+# ===========================================
+# DNIDS - Python Dependencies
+# ===========================================
+# Install with: pip install -r requirements.txt
+# ===========================================
+
+# Data Processing
+numpy>=1.21.0
+pandas>=1.3.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+
+# Model Serialization
+joblib>=1.1.0
+
+# Storm Integration (for topology deployment)
+# streamparse>=3.15.0  # Uncomment when deploying to Storm cluster
+
+# Visualization (optional, for analysis)
+matplotlib>=3.4.0
+
+# HTTP requests (for dataset download)
+requests>=2.26.0
+
+# Rich console output
+colorama>=0.4.4
