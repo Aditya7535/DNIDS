@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dnids-dashboard
+    runtime: python
+    buildCommand: pip install -r requirements-web.txt && python dataset/download_dataset.py && python model/train_model.py
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    plan: free
